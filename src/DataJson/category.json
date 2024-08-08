@@ -1,0 +1,53 @@
+[
+    {
+      "_id": 1,
+      "category": "restaurant",
+      "image": "https://static-00.iconduck.com/assets.00/open-book-icon-2048x2048-wuklhx59.png"
+    },
+    {
+      "_id": 2,
+      "category": "shopping",
+      "image": "https://static-00.iconduck.com/assets.00/open-book-icon-2048x2048-wuklhx59.png"
+    },
+    {
+      "_id": 3,
+      "category": "hospital",
+      "image": "https://static-00.iconduck.com/assets.00/open-book-icon-2048x2048-wuklhx59.png"
+    },
+    {
+      "_id": 4,
+      "category": "education",
+      "image": "https://static-00.iconduck.com/assets.00/open-book-icon-2048x2048-wuklhx59.png"
+    },
+    {
+      "_id": 5,
+      "category": "workshop",
+      "image": "https://static-00.iconduck.com/assets.00/open-book-icon-2048x2048-wuklhx59.png"
+    },
+    {
+      "_id": 6,
+      "category": "entertainment",
+      "image": "https://static-00.iconduck.com/assets.00/open-book-icon-2048x2048-wuklhx59.png"
+    },
+    {
+      "_id": 7,
+      "category": "travel",
+      "image": "https://static-00.iconduck.com/assets.00/open-book-icon-2048x2048-wuklhx59.png"
+    },
+    {
+      "_id": 8,
+      "category": "sports",
+      "image": "https://static-00.iconduck.com/assets.00/open-book-icon-2048x2048-wuklhx59.png"
+    },
+    {
+      "_id": 9,
+      "category": "greetings",
+      "image": "https://static-00.iconduck.com/assets.00/open-book-icon-2048x2048-wuklhx59.png"
+    },
+    {
+      "_id": 10,
+      "category": "All",
+      "image": "https://static-00.iconduck.com/assets.00/open-book-icon-2048x2048-wuklhx59.png"
+    }
+  ]
+  

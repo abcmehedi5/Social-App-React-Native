@@ -1,0 +1,219 @@
+[
+    {
+      "_id": 1,
+      "english": "how",
+      "bangla": "কেমন",
+      "category": "travel"
+    },
+    {
+      "_id": 2,
+      "english": "where",
+      "bangla": "কোথায়",
+      "category": "travel"
+    },
+    {
+      "_id": 3,
+      "english": "restaurant",
+      "bangla": "রেস্টুরেন্ট",
+      "category": "food"
+    },
+    {
+      "_id": 4,
+      "english": "hotel",
+      "bangla": "হোটেল",
+      "category": "travel"
+    },
+    {
+      "_id": 5,
+      "english": "hello",
+      "bangla": "হ্যালো",
+      "category": "greetings"
+    },
+    {
+      "_id": 6,
+      "english": "goodbye",
+      "bangla": "বিদায়",
+      "category": "greetings"
+    },
+    {
+        "_id": 101,
+        "english": "football",
+        "bangla": "ফুটবল",
+        "category": "sports"
+      },
+      {
+        "_id": 102,
+        "english": "basketball",
+        "bangla": "বাস্কেটবল",
+        "category": "sports"
+      },
+      {
+        "_id": 103,
+        "english": "tennis",
+        "bangla": "টেনিস",
+        "category": "sports"
+      },
+      {
+        "_id": 104,
+        "english": "cricket",
+        "bangla": "ক্রিকেট",
+        "category": "sports"
+      },
+      {
+        "_id": 105,
+        "english": "swimming",
+        "bangla": "সাঁতর",
+        "category": "sports"
+      },
+      {
+        "_id": 106,
+        "english": "volleyball",
+        "bangla": "ভলিবল",
+        "category": "sports"
+      },
+      {
+        "_id": 107,
+        "english": "baseball",
+        "bangla": "বেসবল",
+        "category": "sports"
+      },
+      {
+        "_id": 108,
+        "english": "athletics",
+        "bangla": "ক্রীড়া",
+        "category": "sports"
+      },
+      {
+        "_id": 109,
+        "english": "hockey",
+        "bangla": "হকি",
+        "category": "sports"
+      },
+      {
+        "_id": 110,
+        "english": "badminton",
+        "bangla": "ব্যাডমিন্টন",
+        "category": "sports"
+      },
+      {
+        "_id": 201,
+        "english": "movie",
+        "bangla": "চলচ্চিত্র",
+        "category": "entertainment"
+      },
+      {
+        "_id": 202,
+        "english": "music",
+        "bangla": "সঙ্গীত",
+        "category": "entertainment"
+      },
+      {
+        "_id": 203,
+        "english": "television",
+        "bangla": "টেলিভিশন",
+        "category": "entertainment"
+      },
+      {
+        "_id": 204,
+        "english": "concert",
+        "bangla": "সংগীত সম্মেলন",
+        "category": "entertainment"
+      },
+      {
+        "_id": 205,
+        "english": "drama",
+        "bangla": "নাটক",
+        "category": "entertainment"
+      },
+      {
+        "_id": 206,
+        "english": "magazine",
+        "bangla": "ম্যাগাজিন",
+        "category": "entertainment"
+      },
+      {
+        "_id": 207,
+        "english": "comedy",
+        "bangla": "কৌতুক",
+        "category": "entertainment"
+      },
+      {
+        "_id": 208,
+        "english": "video game",
+        "bangla": "ভিডিও গেম",
+        "category": "entertainment"
+      },
+      {
+        "_id": 209,
+        "english": "theater",
+        "bangla": "থিয়েটার",
+        "category": "entertainment"
+      },
+      {
+        "_id": 210,
+        "english": "book",
+        "bangla": "বই",
+        "category": "entertainment"
+      },
+      {
+        "_id": 301,
+        "english": "school",
+        "bangla": "স্কুল",
+        "category": "education"
+      },
+      {
+        "_id": 302,
+        "english": "teacher",
+        "bangla": "শিক্ষক",
+        "category": "education"
+      },
+      {
+        "_id": 303,
+        "english": "student",
+        "bangla": "ছাত্র",
+        "category": "education"
+      },
+      {
+        "_id": 304,
+        "english": "university",
+        "bangla": "বিশ্ববিদ্যালয়",
+        "category": "education"
+      },
+      {
+        "_id": 305,
+        "english": "classroom",
+        "bangla": "শ্রেণীকক্ষ",
+        "category": "education"
+      },
+      {
+        "_id": 306,
+        "english": "mathematics",
+        "bangla": "গণিত",
+        "category": "education"
+      },
+      {
+        "_id": 307,
+        "english": "science",
+        "bangla": "বিজ্ঞান",
+        "category": "education"
+      },
+      {
+        "_id": 308,
+        "english": "homework",
+        "bangla": "গৃহকার্য",
+        "category": "education"
+      },
+      {
+        "_id": 309,
+        "english": "lecture",
+        "bangla": "বক্তৃতা",
+        "category": "education"
+      },
+      {
+        "_id": 310,
+        "english": "library",
+        "bangla": "লাইব্রেরি",
+        "category": "education"
+      }
+  ]
+  
