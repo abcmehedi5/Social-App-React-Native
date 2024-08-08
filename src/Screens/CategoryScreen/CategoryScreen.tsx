@@ -1,6 +1,6 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import Category from '../../Components/Category/Category';
+import { SafeAreaView, ScrollView } from 'react-native';
 
 const CategoryScreen = ({navigation}: any) => {
   return (
