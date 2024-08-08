@@ -8,6 +8,7 @@ import TabNavigator from '../TabNavigator/TabNavigator';
 import DrawerNavigator from '../Drawer/DrawerNavigator';
 import CategoryScreen from '../Screens/CategoryScreen/CategoryScreen';
 import VocabularyScreen from '../Screens/VocabularyScreen/VocabularyScreen';
+import MessageScreen from '../Screens/MessageScreen/MessageScreen';
 const Navigation = () => {
   const Stack = createNativeStackNavigator();
   return (
@@ -39,6 +40,12 @@ const Navigation = () => {
           name="Vocabulary"
           component={VocabularyScreen}
           options={{title: 'Learn Vocabulary'}}
+        />
+
+        <Stack.Screen
+          name="message"
+          component={MessageScreen}
+          options={{title: 'Message'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

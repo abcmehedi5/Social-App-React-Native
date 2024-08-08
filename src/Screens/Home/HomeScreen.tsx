@@ -26,6 +26,10 @@ const HomeScreen = ({navigation}: any) => {
           <TouchableOpacity onPress={() => navigation.push('Category')}>
             <Text style={styles.GoBtn}>Go</Text>
           </TouchableOpacity>
+          {/* Message button */}
+          <TouchableOpacity onPress={() => navigation.push('message')}>
+            <Text style={styles.MessageBtnStyle}>Go To Messanger</Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </ImageBackground>
@@ -58,6 +62,18 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     padding: 10,
     fontSize: 30,
+    borderRadius: 100,
+    color: '#e52e71',
+    borderWidth: 1,
+    borderColor: '#e33e71',
+    marginTop: 30,
+  },
+  MessageBtnStyle: {
+    backgroundColor: '#fff',
+    textAlign: 'center',
+    alignSelf: 'center',
+    padding: 10,
+    fontSize: 20,
     borderRadius: 100,
     color: '#e52e71',
     borderWidth: 1,
