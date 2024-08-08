@@ -4,11 +4,7 @@ import {Text} from 'react-native-paper';
 import Message from '../../Components/screen-components/Message/Message';
 
 const MessageScreen = () => {
-  return (
-    <View>
-      <Message />
-    </View>
-  );
+  return <Message />;
 };
 
 export default MessageScreen;

@@ -6,24 +6,45 @@ import {
   Text,
   StyleSheet,
   SafeAreaView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ScrollView,
 } from 'react-native';
 
 const Message = () => {
-  const [messageText, setMessageText] = useState([]);
-
-  const handleSubmit = (data: any) => {
+  const [messageText, setMessageText] = useState('');
+  const handleMessageSubmit = () => {
     console.log({messageText});
+    setMessageText('');
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <View style={styles.textInputContainer}>
+      <View style={styles.contentContainer}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View>
+            {/* thsi is content */}
+            <ScrollView>
+              <Text style={{fontSize: 30}}>Message</Text>
+            </ScrollView>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      {/* footer */}
+      <View style={styles.messageInputContainer}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            gap: 8,
+            alignItems: 'center',
+          }}>
           <TextInput
-            placeholder="Name"
-            style={styles.inputStyle}
+            style={styles.messageInput}
+            placeholder="Type your message here"
             onChangeText={(text: any) => setMessageText(text)}
           />
-          <Button title="Send" onPress={handleSubmit} />
+
+          <Button onPress={handleMessageSubmit} title="send" />
         </View>
       </View>
     </SafeAreaView>
@@ -33,22 +54,8 @@ const Message = () => {
 export default Message;
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 9,
-  },
-
-  inputStyle: {
-    borderRadius: 5,
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    flex: 1,
-  },
-
-  textInputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 10,
-  },
+  container: {flex: 1, padding: 5},
+  contentContainer: {flex: 1, backgroundColor: 'white'},
+  messageInputContainer: {backgroundColor: 'white', marginTop: 5},
+  messageInput: {borderColor: 'gray', borderWidth: 1, marginTop: 5, flex: 1},
 });
