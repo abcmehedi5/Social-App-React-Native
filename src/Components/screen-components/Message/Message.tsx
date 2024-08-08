@@ -10,11 +10,13 @@ import {
   Keyboard,
   ScrollView,
 } from 'react-native';
+import {useGetAllMessageQuery} from '../../../store/api/message/messageApi';
 
 const Message = () => {
   const [messageText, setMessageText] = useState('');
+  const {data} = useGetAllMessageQuery({page: 1, limit: 200});
   const handleMessageSubmit = () => {
-    console.log({messageText});
+    console.log(data.data);
     setMessageText('');
   };
   return (
