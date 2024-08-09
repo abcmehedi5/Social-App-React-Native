@@ -3,17 +3,17 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import HomeScreen from '../Screens/Home/HomeScreen';
 import ListScreen from '../Screens/ListScreen/ListScreen';
-import {Alert, Button, View} from 'react-native';
-import TabNavigator from '../TabNavigator/TabNavigator';
-import DrawerNavigator from '../Drawer/DrawerNavigator';
 import CategoryScreen from '../Screens/CategoryScreen/CategoryScreen';
 import VocabularyScreen from '../Screens/VocabularyScreen/VocabularyScreen';
 import MessageScreen from '../Screens/MessageScreen/MessageScreen';
+import LoginScreen from '../Screens/Auth/Login/LoginScreen';
 const Navigation = () => {
   const Stack = createNativeStackNavigator();
+  const isUser = false;
+  const initialPath = isUser ? 'Home' : 'login';
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName={initialPath}>
         <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -46,6 +46,13 @@ const Navigation = () => {
           name="message"
           component={MessageScreen}
           options={{title: 'Message'}}
+        />
+
+        {/* Authentication route */}
+        <Stack.Screen
+          name="login"
+          component={LoginScreen}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>
