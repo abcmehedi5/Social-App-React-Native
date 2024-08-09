@@ -11,9 +11,11 @@ import {
   Image,
 } from 'react-native';
 import CustomButton from '../../../Common/Button/Button';
+import {useLoginUserMutation} from '../../../../store/api/auth/authAPi';
 
 const Login = ({navigation}: any) => {
-  const [formData, setFormData] = useState({username: '', password: ''});
+  const [formData, setFormData] = useState({email: '', password: ''});
+  const [loginUser] = useLoginUserMutation();
 
   const handleChange = (name: string, value: string) => {
     setFormData({
@@ -22,16 +24,17 @@ const Login = ({navigation}: any) => {
     });
   };
 
-  const handleLogin = () => {
-    const {username, password} = formData;
+  const handleLogin = async () => {
+    const {email, password} = formData;
 
-    if (!username || !password) {
-      Alert.alert('Error', 'Please enter both username and password');
+    if (!email || !password) {
+      Alert.alert('Error', 'Please enter both email and password');
       return;
     }
-
-    console.log('Logging in with:', username, password);
-    navigation.push('message');
+    const res = await loginUser({email, password});
+    console.log(res)
+    console.log('Logging in with:', email, password);
+    // navigation.push('message');
   };
 
   return (
@@ -53,10 +56,10 @@ const Login = ({navigation}: any) => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="Username"
+            placeholder="email"
             placeholderTextColor="#aaa"
-            value={formData.username}
-            onChangeText={value => handleChange('username', value)}
+            value={formData.email}
+            onChangeText={value => handleChange('email', value)}
           />
           <TextInput
             style={styles.input}
@@ -126,8 +129,8 @@ const styles = StyleSheet.create({
     height: 200,
     backgroundColor: 'white',
     borderRadius: 100,
-    borderWidth:2,
-    borderColor:'red',
+    borderWidth: 2,
+    borderColor: 'red',
     resizeMode: 'cover',
   },
 });
