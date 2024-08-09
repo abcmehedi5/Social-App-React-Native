@@ -52,7 +52,7 @@ const Navigation = () => {
         <Stack.Screen
           name="login"
           component={LoginScreen}
-          options={{headerShown: false}}
+          options={{headerShown: false, statusBarStyle: 'auto'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

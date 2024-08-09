@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Button,
 } from 'react-native';
+import CustomButton from '../../../Common/Button/Button';
 const Login = ({navigation}: any) => {
   return (
     <ImageBackground
@@ -20,9 +21,9 @@ const Login = ({navigation}: any) => {
           <Text>Login Screen</Text>
         </View>
 
-        <TouchableOpacity onPress={() => navigation.push('message')}>
-          <Text style={styles.MessageBtnStyle}>Go To Messanger</Text>
-        </TouchableOpacity>
+        <CustomButton onPress={() => navigation.push('message')}>
+          Login
+        </CustomButton>
       </SafeAreaView>
     </ImageBackground>
   );
@@ -33,19 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-
-  MessageBtnStyle: {
-    backgroundColor: '#fff',
-    textAlign: 'center',
-    alignSelf: 'center',
     padding: 10,
-    fontSize: 20,
-    borderRadius: 100,
-    color: '#e52e71',
-    borderWidth: 1,
-    borderColor: '#e33e71',
-    marginTop: 30,
   },
 });
 export default Login;
