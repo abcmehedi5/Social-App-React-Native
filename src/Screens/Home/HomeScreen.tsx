@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -7,9 +7,24 @@ import {
   StyleSheet,
   StatusBar,
   TouchableOpacity,
-  Button,
+  Alert,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const HomeScreen = ({navigation}: any) => {
+  const handleLogout = async () => {
+    try {
+      // Clear the access token from AsyncStorage
+      await AsyncStorage.removeItem('accessToken');
+      Alert.alert('Success', 'You have been logged out.');
+      // Navigate back to the login screen
+      navigation.replace('login');
+    } catch (error) {
+      console.error('Logout Error:', error);
+      Alert.alert('Error', 'An error occurred during logout.');
+    }
+  };
+
   return (
     <ImageBackground
       source={require('../../assets/background_image.jpg')}
@@ -22,13 +37,19 @@ const HomeScreen = ({navigation}: any) => {
             Your Vocabulary Journey Begins Here
           </Text>
 
-          {/* go button */}
+          {/* Go button */}
           <TouchableOpacity onPress={() => navigation.push('Category')}>
             <Text style={styles.GoBtn}>Go</Text>
           </TouchableOpacity>
+
           {/* Message button */}
           <TouchableOpacity onPress={() => navigation.push('message')}>
-            <Text style={styles.MessageBtnStyle}>Go To Messanger</Text>
+            <Text style={styles.MessageBtnStyle}>Go To Messenger</Text>
+          </TouchableOpacity>
+
+          {/* Logout button */}
+          <TouchableOpacity onPress={handleLogout}>
+            <Text style={styles.LogoutBtn}>Logout</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -80,5 +101,18 @@ const styles = StyleSheet.create({
     borderColor: '#e33e71',
     marginTop: 30,
   },
+  LogoutBtn: {
+    backgroundColor: '#e52e71',
+    textAlign: 'center',
+    alignSelf: 'center',
+    padding: 10,
+    fontSize: 20,
+    borderRadius: 100,
+    color: '#fff',
+    borderWidth: 1,
+    borderColor: '#e33e71',
+    marginTop: 30,
+  },
 });
+
 export default HomeScreen;
