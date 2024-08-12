@@ -9,13 +9,16 @@ import {
   TextInput,
   Alert,
   Image,
+  ActivityIndicator,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomButton from '../../../Common/Button/Button';
 import {useLoginUserMutation} from '../../../../store/api/auth/authAPi';
 
 const Login = ({navigation}: any) => {
   const [formData, setFormData] = useState({email: '', password: ''});
-  const [loginUser] = useLoginUserMutation();
+  const [loginUser, {isLoading}] = useLoginUserMutation(); // Adding isLoading state
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (name: string, value: string) => {
     setFormData({
@@ -31,10 +34,30 @@ const Login = ({navigation}: any) => {
       Alert.alert('Error', 'Please enter both email and password');
       return;
     }
-    const res = await loginUser({email, password});
-    console.log(res)
-    console.log('Logging in with:', email, password);
-    // navigation.push('message');
+
+    setLoading(true); // Start loading animation
+
+    try {
+      const res: any = await loginUser({email, password}).unwrap();
+      console.log(res.accessToken);
+
+      if (res.accessToken && res.status === 200) {
+        console.log('Login Successful:', res.data);
+        await AsyncStorage.setItem('accessToken', res.accessToken);
+        // await AsyncStorage.setItem('refreshToken', res.refreshToken);
+        Alert.alert('Success', res.message);
+
+        // Navigate to the Message screen
+        navigation.navigate('Home');
+      } else {
+        Alert.alert('Login Failed', 'Please check your credentials');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      Alert.alert('Login Failed', 'An error occurred during login');
+    } finally {
+      setLoading(false); // Stop loading animation
+    }
   };
 
   return (
@@ -56,7 +79,7 @@ const Login = ({navigation}: any) => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="email"
+            placeholder="Email"
             placeholderTextColor="#aaa"
             value={formData.email}
             onChangeText={value => handleChange('email', value)}
@@ -72,7 +95,11 @@ const Login = ({navigation}: any) => {
         </View>
 
         <CustomButton style={styles.loginButton} onPress={handleLogin}>
-          Login
+          {loading ? (
+            <ActivityIndicator size="small" color="#fff" />
+          ) : (
+            <Text style={styles.buttonText}>Login</Text>
+          )}
         </CustomButton>
       </SafeAreaView>
     </ImageBackground>
@@ -90,19 +117,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    // justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   logoContainer: {
     marginBottom: 40,
-  },
-  logoText: {
-    fontSize: 40,
-    color: '#fff',
-    fontWeight: 'bold',
-    textAlign: 'center',
   },
   inputContainer: {
     width: '100%',
@@ -119,10 +139,14 @@ const styles = StyleSheet.create({
   loginButton: {
     width: '100%',
     backgroundColor: '#e52e71',
-    color: 'white',
     paddingVertical: 15,
     borderRadius: 8,
     borderColor: '#e33e71',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
   },
   image: {
     width: 200,
