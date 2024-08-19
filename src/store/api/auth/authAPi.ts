@@ -32,6 +32,16 @@ export const authApi = baseApi.injectEndpoints({
         // },
       }),
     }),
+    // login user data
+    getTokenUser: builder.query({
+      query: token => ({
+        url: `/auth/get-token-user/${token}`,
+        method: 'GET',
+        // headers: {
+        //   // authorization: "Bearer " + getFromLocalStorage("accessToken"),
+        // },
+      }),
+    }),
 
     getAllUsers: builder.query({
       query: arg => {
@@ -50,4 +60,5 @@ export const {
   useGetSingleUserQuery,
   useGenerateNewRefreshTokenMutation,
   useGetAllUsersQuery,
+  useGetTokenUserQuery,
 } = authApi;

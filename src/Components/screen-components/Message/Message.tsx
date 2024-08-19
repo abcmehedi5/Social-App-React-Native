@@ -10,17 +10,22 @@ import {
   Keyboard,
   ScrollView,
   FlatList,
+  ActivityIndicator,
 } from 'react-native';
 import io from 'socket.io-client';
 import {
   useGetAllMessageQuery,
   useSaveNewMessageMutation,
 } from '../../../store/api/message/messageApi';
+import useUser from '../../../hooks/useUser';
+import {useGetSingleUserQuery} from '../../../store/api/auth/authAPi';
 
 // Initialize socket connection
 const socket = io('http://195.35.9.33:8001');
 
 const Message = () => {
+  const {user} = useUser();
+  console.log("workingsssssss", user);
   const [messageText, setMessageText] = useState('');
   const [displayMessages, setDisplayMessages]: any = useState([]);
   const [recipientEmail, setRecipientEmail] = useState('mim@gmail.com');
@@ -88,7 +93,7 @@ const Message = () => {
   };
 
   const sendPrivateMessage = async () => {
-    selectUser('mim@gmail.com')
+    selectUser('mim@gmail.com');
     if (recipientEmail && messageText) {
       const message = messageText;
       try {
