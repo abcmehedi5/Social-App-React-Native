@@ -10,6 +10,7 @@ import {
   Alert,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import TabNavigator from '../../TabNavigator/TabNavigator';
 
 const HomeScreen = ({navigation}: any) => {
   const handleLogout = async () => {
@@ -45,6 +46,10 @@ const HomeScreen = ({navigation}: any) => {
           {/* Message button */}
           <TouchableOpacity onPress={() => navigation.push('message')}>
             <Text style={styles.MessageBtnStyle}>Go To Messenger</Text>
+          </TouchableOpacity>
+          {/* Message button */}
+          <TouchableOpacity onPress={() => navigation.push('inbox')}>
+            <Text style={styles.MessageBtnStyle}>Go To Inbox</Text>
           </TouchableOpacity>
 
           {/* Logout button */}

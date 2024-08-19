@@ -9,6 +9,7 @@ import VocabularyScreen from '../Screens/VocabularyScreen/VocabularyScreen';
 import MessageScreen from '../Screens/MessageScreen/MessageScreen';
 import LoginScreen from '../Screens/Auth/Login/LoginScreen';
 import {ActivityIndicator, View} from 'react-native';
+import InboxScreen from '../Screens/MessageScreen/InboxScreen';
 
 const Navigation = () => {
   const Stack = createNativeStackNavigator();
@@ -46,10 +47,7 @@ const Navigation = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{
-            statusBarStyle: 'dark',
-            headerShown: false,
-          }}
+          options={{headerShown: false}}
         />
 
         <Stack.Screen
@@ -75,6 +73,11 @@ const Navigation = () => {
           name="message"
           component={MessageScreen}
           options={{title: 'Message'}}
+        />
+        <Stack.Screen
+          name="inbox"
+          component={InboxScreen}
+          options={{headerShown: false}}
         />
 
         {/* Authentication route */}
