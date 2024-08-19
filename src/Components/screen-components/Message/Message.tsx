@@ -18,24 +18,26 @@ import {
   useSaveNewMessageMutation,
 } from '../../../store/api/message/messageApi';
 import useUser from '../../../hooks/useUser';
-import {useGetSingleUserQuery} from '../../../store/api/auth/authAPi';
+import {useGetAllUsersQuery} from '../../../store/api/auth/authAPi';
 
 // Initialize socket connection
 const socket = io('http://195.35.9.33:8001');
 
 const Message = () => {
   const {user} = useUser();
-  console.log("workingsssssss", user);
+  console.log('User Data', user);
   const [messageText, setMessageText] = useState('');
   const [displayMessages, setDisplayMessages]: any = useState([]);
   const [recipientEmail, setRecipientEmail] = useState('mim@gmail.com');
   const [notifications, setNotifications]: any = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  console.log(onlineUsers);
   const [lastMessages, setLastMessages] = useState({});
   // const {data: allUsers} = useGetAllUsersQuery({page: 1, limit: 60});
   const [saveNewMessage] = useSaveNewMessageMutation();
   const {data: allMessages} = useGetAllMessageQuery({page: 1, limit: 200});
-
+  const {data: allUsers} = useGetAllUsersQuery({page: 1, limit: 60});
+  console.log(allUsers)
   useEffect(() => {
     // Setup socket event listeners
     socket.on('received_private_message', (data: any) => {
@@ -87,7 +89,7 @@ const Message = () => {
   const selectUser = (email: any) => {
     setRecipientEmail(email);
     socket.emit('load_messages', {
-      senderEmail: 'abcmehedi5@gmail.com', // Replace with actual user email
+      senderEmail: user?.email,
       recipientEmail: email,
     });
   };
@@ -98,15 +100,15 @@ const Message = () => {
       const message = messageText;
       try {
         await saveNewMessage({
-          fullName: 'Mehedi Hassan', // Replace with actual user full name
+          fullName: user?.fullName,
           message,
-          email: 'abcmehedi5@gmail.com', // Replace with actual user email
+          email: user?.email,
           recipient: recipientEmail,
         }).unwrap();
         socket.emit('send_private_message', {
           recipientEmail,
           message,
-          senderEmail: 'abcmehedi5@gmail.com', // Replace with actual user email
+          senderEmail: user?.email,
         });
 
         setDisplayMessages((prevMessages: any) => [
