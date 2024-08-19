@@ -56,7 +56,7 @@ const Message = () => {
 
     socket.on('load_messages', (messages: any) => {
       const formattedMessages = messages.map((msg: any) => ({
-        sender: msg.email === recipientEmail ? 'You' : msg.email,
+        sender: msg.email === user.email ? 'You' : msg.email,
         message: msg.message,
         timestamp: new Date(msg.createdAt).toLocaleTimeString(),
       }));
@@ -97,7 +97,12 @@ const Message = () => {
           message,
           senderEmail: user?.email,
         });
-
+        console.log({
+          fullName: user?.fullName,
+          message,
+          email: user?.email,
+          recipient: recipientEmail,
+        });
         setDisplayMessages((prevMessages: any) => [
           ...prevMessages,
           {
