@@ -19,25 +19,22 @@ import {
 } from '../../../store/api/message/messageApi';
 import useUser from '../../../hooks/useUser';
 import {useGetAllUsersQuery} from '../../../store/api/auth/authAPi';
+import {useRoute} from '@react-navigation/native';
 
 // Initialize socket connection
 const socket = io('http://195.35.9.33:8001');
 
 const Message = () => {
   const {user} = useUser();
-  console.log('User Data', user);
+  const route: any = useRoute();
+  const {recipientEmailParams} = route.params;
   const [messageText, setMessageText] = useState('');
   const [displayMessages, setDisplayMessages]: any = useState([]);
-  const [recipientEmail, setRecipientEmail] = useState('mim@gmail.com');
-  const [notifications, setNotifications]: any = useState([]);
+  const [recipientEmail, setRecipientEmail] = useState(recipientEmailParams);
   const [onlineUsers, setOnlineUsers] = useState([]);
-  console.log(onlineUsers);
   const [lastMessages, setLastMessages] = useState({});
   // const {data: allUsers} = useGetAllUsersQuery({page: 1, limit: 60});
   const [saveNewMessage] = useSaveNewMessageMutation();
-  const {data: allMessages} = useGetAllMessageQuery({page: 1, limit: 200});
-  const {data: allUsers} = useGetAllUsersQuery({page: 1, limit: 60});
-  console.log(allUsers)
   useEffect(() => {
     // Setup socket event listeners
     socket.on('received_private_message', (data: any) => {
@@ -55,10 +52,6 @@ const Message = () => {
         ...prev,
         [data.sender]: data.message,
       }));
-      setNotifications((prev: any) => [
-        ...prev,
-        `New message from ${data.sender}`,
-      ]);
     });
 
     socket.on('load_messages', (messages: any) => {
@@ -70,21 +63,16 @@ const Message = () => {
       setDisplayMessages(formattedMessages);
     });
 
-    socket.on('notification', (data: any) => {
-      setNotifications((prev: any) => [...prev, data.message]);
-    });
-
     socket.on('online_users', (users: any) => {
       setOnlineUsers(users);
     });
-
+    selectUser(recipientEmailParams);
     return () => {
       socket.off('received_private_message');
       socket.off('load_messages');
-      socket.off('notification');
       socket.off('online_users');
     };
-  }, [recipientEmail]);
+  }, [recipientEmail, recipientEmailParams]);
 
   const selectUser = (email: any) => {
     setRecipientEmail(email);
@@ -95,7 +83,6 @@ const Message = () => {
   };
 
   const sendPrivateMessage = async () => {
-    selectUser('mim@gmail.com');
     if (recipientEmail && messageText) {
       const message = messageText;
       try {
